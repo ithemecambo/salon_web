@@ -93,7 +93,7 @@ class ShopService(BaseModel):
 
 class Gallery(BaseModel):
     shop_id = models.ForeignKey(Shop, on_delete=models.CASCADE, verbose_name='Shop')
-    photo_url = models.ImageField(upload_to='services/galleries/%Y-%m-%d/', verbose_name='Photo',
+    photo_url = models.ImageField(upload_to='shops/galleries/%Y-%m-%d/', verbose_name='Photo',
                                   blank=True, null=True, help_text='Allow size is 20MB')
 
     class Meta:
@@ -112,8 +112,8 @@ class Gallery(BaseModel):
 
 class BusinessHour(BaseModel):
     shop_id = models.ForeignKey(Shop, on_delete=models.CASCADE, verbose_name='Shop')
-    day = models.CharField(max_length=15, blank=False, null=False, verbose_name='Day')
-    hour = models.CharField(max_length=15, blank=False, null=False, verbose_name='Hour')
+    day = models.CharField(max_length=25, blank=False, null=False, verbose_name='Day')
+    hour = models.CharField(max_length=25, blank=False, null=False, verbose_name='Hour')
 
     class Meta:
         verbose_name_plural = 'BusinessHours'
@@ -124,8 +124,9 @@ class BusinessHour(BaseModel):
 
 class Staff(BaseModel):
     shop_id = models.ForeignKey(Shop, on_delete=models.CASCADE, verbose_name='Shop')
-    first_name = models.CharField(max_length=25, blank=False, null=False, verbose_name='First Name')
-    last_name = models.CharField(max_length=25, blank=False, null=False, verbose_name='Last Name')
+    first_name = models.CharField(max_length=25, blank=True, null=True, verbose_name='First Name')
+    last_name = models.CharField(max_length=25, blank=True, null=True, verbose_name='Last Name')
+    nickname = models.CharField(max_length=25, blank=False, null=False, verbose_name='Nickname', default='')
     tel = models.CharField(max_length=20, blank=True, null=True, verbose_name='Tel')
     email = models.EmailField(max_length=100, blank=True, null=True, verbose_name='Email')
     ssn = models.CharField(max_length=15, blank=False, null=False, verbose_name='Social Security Number')

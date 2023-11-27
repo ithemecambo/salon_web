@@ -51,6 +51,12 @@ class ShopServiceLevelInlineAdmin(admin.TabularInline):
     extra = 0
 
 
+class StaffLevelInlineAdmin(admin.StackedInline):
+    form = StaffCreateForm
+    model = Staff
+    extra = 0
+
+
 class ShopAdmin(admin.ModelAdmin):
     form = ShopCreateForm
     model = Shop
@@ -83,6 +89,7 @@ class ShopAdmin(admin.ModelAdmin):
     ]
 
     inlines = [
+        StaffLevelInlineAdmin,
         BusinessHourLevelInlineAdmin,
         ShopServiceLevelInlineAdmin,
         GalleryLevelInlineAdmin

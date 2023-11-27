@@ -12,14 +12,14 @@ class CategoryCreateForm(forms.ModelForm):
             'status'
         ]
 
-    def clean_category_name(self):
-        category_name = self.cleaned_data.get('category_name')
-        if not category_name:
-            raise forms.ValidationError('This field is required.')
-        for category in Category.objects.all():
-            if category.category_name == category_name:
-                raise forms.ValidationError(category_name + ' is already created')
-        return category_name
+    # def clean_category_name(self):
+    #     category_name = self.cleaned_data.get('category_name')
+    #     if not category_name:
+    #         raise forms.ValidationError('This field is required.')
+    #     for category in Category.objects.all():
+    #         if category.category_name == category_name:
+    #             raise forms.ValidationError(category_name + ' is already created')
+    #     return category_name
 
 
 class CategoryUpdateForm(forms.ModelForm):
@@ -74,3 +74,10 @@ class GalleryCreateForm(forms.ModelForm):
     class Meta:
         model = Gallery
         fields = ['photo_url']
+
+
+class StaffCreateForm(forms.ModelForm):
+    class Meta:
+        model = Staff
+        fields = ['first_name', 'last_name', 'nickname', 'tel', 'email', 'ssn', 'photo_url']
+
